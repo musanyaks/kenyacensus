@@ -3,7 +3,7 @@ Type: Package
 Title: Kenya Population and Housing Census Data
 Version: 1.0.0
 Authors@R: c(
-    person("Data", "Compiler", email = "data@kenyacensus.org", role = c("aut", "cre"))
+    person("Musa", "Rioba", email = "nyakerabachi@gmail.com", role = c("aut", "cre"))
     )
 Description: Provides comprehensive Kenya Population and Housing Census data 
     from 1948 to 2019. Includes national summaries, county-level breakdowns,
