@@ -1,0 +1,165 @@
+---
+title: "Introduction to kenyacensus"
+author: "Kenya Census Data Package"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to kenyacensus}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Overview
+
+The `kenyacensus` package provides comprehensive Kenya Population and Housing Census data from 1948 to 2019. All data is sourced from the Kenya National Bureau of Statistics (KNBS).
+
+## Installation
+
+```r
+# Install from source
+devtools::install_github("kenya-data/kenyacensus")
+
+# Or install from local directory
+devtools::install("path/to/kenyacensus")
+```
+
+## Loading the Package
+
+```r
+library(kenyacensus)
+```
+
+## Listing Available Datasets
+
+```{r}
+list_datasets()
+```
+
+## National Trends
+
+View population growth over time:
+
+```{r}
+head(census_age_sex)
+```
+
+Calculate growth rates:
+
+```{r}
+calculate_growth_rate(2009, 2019)
+```
+
+Plot the trend:
+
+```{r, fig.width=7, fig.height=5}
+plot_census_trend()
+```
+
+## County-Level Analysis (2019)
+
+Get data for specific counties:
+
+```{r}
+get_county_data(c("Nairobi City", "Mombasa", "Kisumu"))
+```
+
+Find the most populous counties:
+
+```{r}
+head(census_by_county[order(-census_by_county$Total), c("County", "Total", "Population_Density")], 10)
+```
+
+Compare counties:
+
+```{r}
+compare_counties(c("Nairobi City", "Mombasa", "Kisumu", "Nakuru"))
+```
+
+Search for counties:
+
+```{r}
+search_counties("Nai")
+```
+
+## Demographics
+
+### Population Pyramid
+
+```{r, fig.width=7, fig.height=6}
+plot_population_pyramid()
+```
+
+### Age Structure
+
+```{r}
+census_age_sex
+```
+
+### Ethnicity
+
+```{r}
+head(census_ethnicity[order(-census_ethnicity$Population), ], 10)
+```
+
+## Education
+
+```{r}
+census_education
+```
+
+## Housing and Services
+
+### Water Access
+
+```{r}
+census_water
+```
+
+### Lighting
+
+```{r}
+census_lighting
+```
+
+### Sanitation
+
+```{r}
+census_sanitation
+```
+
+## ICT Access
+
+```{r}
+census_ict
+```
+
+## Employment
+
+```{r}
+census_employment
+```
+
+## Historical Data by Province
+
+```{r}
+# Rift Valley population over time
+rv_data <- census_by_province[census_by_province$Province == "Rift Valley", ]
+rv_data[, c("Year", "Total")]
+```
+
+## Data Sources
+
+All data is sourced from:
+- Kenya National Bureau of Statistics (KNBS): https://www.knbs.or.ke/
+- OpenAfrica (CKAN): https://open.africa/
+
+## Citation
+
+If you use this package in your research, please cite the Kenya National Bureau of Statistics as the original data source.
