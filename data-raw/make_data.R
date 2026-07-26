@@ -1,9 +1,7 @@
 # Data generation script for kenyacensus package
-# Run this script to generate the .rda files in the data/ directory
+# Run in R: source("data-raw/make_data.R")
 
-# ============================================
-# 1. CENSUS_SUMMARY - National totals all years
-# ============================================
+# 1. CENSUS_SUMMARY
 census_summary <- data.frame(
   Year = c(1948L, 1962L, 1969L, 1979L, 1989L, 1999L, 2009L, 2019L),
   Total_Population = c(5400000L, 8600000L, 10943000L, 15327000L, 
@@ -17,17 +15,14 @@ census_summary <- data.frame(
                            NA_integer_, NA_integer_, 9431960L, 12043000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_summary, overwrite = TRUE)
 
-# ============================================
-# 2. CENSUS_BY_COUNTY - 2019 data by county
-# ============================================
+# 2. CENSUS_BY_COUNTY
 census_by_county <- data.frame(
   County = c("Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita/Taveta",
              "Garissa", "Wajir", "Mandera", "Marsabit", "Isiolo", "Meru",
              "Tharaka-Nithi", "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua",
-             "Nyeri", "Kirinyaga", "Murang\'a", "Kiambu", "Turkana", "West Pokot",
+             "Nyeri", "Kirinyaga", "Murang'a", "Kiambu", "Turkana", "West Pokot",
              "Samburu", "Trans Nzoia", "Uasin Gishu", "Elgeyo/Marakwet", "Nandi",
              "Baringo", "Laikipia", "Nakuru", "Narok", "Kajiado", "Kericho",
              "Bomet", "Kakamega", "Vihiga", "Bungoma", "Busia", "Siaya",
@@ -74,14 +69,10 @@ census_by_county <- data.frame(
                       2085.9, 3154.7, 2586.4, 1317.9, 912.5, 694.9),
   stringsAsFactors = FALSE
 )
-
 census_by_county$Population_Density <- round(census_by_county$Total / census_by_county$Land_Area_sq_km, 1)
-
 usethis::use_data(census_by_county, overwrite = TRUE)
 
-# ============================================
-# 3. CENSUS_BY_PROVINCE - Historical by province
-# ============================================
+# 3. CENSUS_BY_PROVINCE
 census_by_province <- data.frame(
   Year = c(rep(1969L, 8), rep(1979L, 8), rep(1989L, 8), rep(1999L, 8), rep(2009L, 8)),
   Province = rep(c("Nairobi", "Central", "Coast", "Eastern", "North Eastern",
@@ -105,12 +96,9 @@ census_by_province <- data.frame(
                  985703L, 1846204L, 865099L, 1392346L, 308004L, 1270751L, 2316962L, 680891L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_by_province, overwrite = TRUE)
 
-# ============================================
-# 4. CENSUS_AGE_SEX - Age and sex distribution
-# ============================================
+# 4. CENSUS_AGE_SEX
 census_age_sex <- data.frame(
   Age_Group = c("0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39",
                 "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79",
@@ -126,12 +114,9 @@ census_age_sex <- data.frame(
             170000L, 100000L, 55000L, 40000L, 13000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_age_sex, overwrite = TRUE)
 
-# ============================================
-# 5. CENSUS_EDUCATION - Education levels
-# ============================================
+# 5. CENSUS_EDUCATION
 census_education <- data.frame(
   Education_Level = c("Never attended / Pre-primary", "Primary (Std 1-8)", 
                       "Secondary (Form 1-4)", "Secondary (Form 5-6)",
@@ -147,12 +132,9 @@ census_education <- data.frame(
             170000L, 290000L, 720000L, 110000L, 210000L, 40000L, 110000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_education, overwrite = TRUE)
 
-# ============================================
-# 6. CENSUS_ETHNICITY - Ethnicity distribution
-# ============================================
+# 6. CENSUS_ETHNICITY
 census_ethnicity <- data.frame(
   Ethnicity = c("Kikuyu", "Luhya", "Kalenjin", "Luo", "Kamba",
                 "Kisii", "Mijikenda", "Meru", "Maasai", "Turkana",
@@ -166,14 +148,10 @@ census_ethnicity <- data.frame(
                  43000L, 59000L, 480000L, 125000L, 195000L),
   stringsAsFactors = FALSE
 )
-
 census_ethnicity$Percentage <- round(census_ethnicity$Population / sum(census_ethnicity$Population) * 100, 2)
-
 usethis::use_data(census_ethnicity, overwrite = TRUE)
 
-# ============================================
-# 7. CENSUS_DISABILITY - Disability statistics
-# ============================================
+# 7. CENSUS_DISABILITY
 census_disability <- data.frame(
   Disability_Type = c("Visual Impairment", "Hearing Impairment", "Physical Disability",
                       "Mental Disability", "Self-Care Difficulty", "Speech Impairment",
@@ -186,12 +164,9 @@ census_disability <- data.frame(
             26000L, 97000L, 44000000L, 55000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_disability, overwrite = TRUE)
 
-# ============================================
-# 8. CENSUS_WATER - Drinking water sources
-# ============================================
+# 8. CENSUS_WATER
 census_water <- data.frame(
   Water_Source = c("Piped into dwelling", "Piped into yard/plot", "Public tap/standpipe",
                    "Borehole/Tube well", "Protected well", "Protected spring",
@@ -204,12 +179,9 @@ census_water <- data.frame(
                  2.7, 0.4, 1.0, 3.2, 0.8, 3.5, 1.5),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_water, overwrite = TRUE)
 
-# ============================================
-# 9. CENSUS_LIGHTING - Lighting sources
-# ============================================
+# 9. CENSUS_LIGHTING
 census_lighting <- data.frame(
   Lighting_Source = c("Electricity (mains supply)", "Electricity (solar)",
                       "Pressure lamp (gas/paraffin)", "Tin lamp", "Lantern",
@@ -219,12 +191,9 @@ census_lighting <- data.frame(
   Percentage = c(43.3, 7.1, 1.5, 18.3, 15.0, 1.0, 3.7, 7.9),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_lighting, overwrite = TRUE)
 
-# ============================================
-# 10. CENSUS_COOKING - Cooking fuel
-# ============================================
+# 10. CENSUS_COOKING
 census_cooking <- data.frame(
   Cooking_Fuel = c("Electricity", "Paraffin (kerosene)", "LPG (liquefied petroleum gas)",
                    "Biogas", "Firewood", "Charcoal", "Solar", "Other fuel"),
@@ -233,12 +202,9 @@ census_cooking <- data.frame(
   Percentage = c(0.8, 1.5, 2.7, 0.7, 23.3, 43.3, 0.4, 7.1),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_cooking, overwrite = TRUE)
 
-# ============================================
-# 11. CENSUS_SANITATION - Sanitation
-# ============================================
+# 11. CENSUS_SANITATION
 census_sanitation <- data.frame(
   Sanitation_Type = c("Main sewer", "Septic tank", "Cess pool", "VIP latrine",
                       "Pit latrine (covered)", "Pit latrine (uncovered)",
@@ -248,12 +214,9 @@ census_sanitation <- data.frame(
   Percentage = c(7.1, 10.0, 1.5, 15.0, 26.7, 17.5, 0.7, 15.0, 3.8),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_sanitation, overwrite = TRUE)
 
-# ============================================
-# 12. CENSUS_ICT - ICT Access
-# ============================================
+# 12. CENSUS_ICT
 census_ict <- data.frame(
   ICT_Service = c("Own a mobile phone (age 3+)", "Use internet (age 3+)",
                   "Use desktop/laptop computer (age 3+)", "Use tablet (age 3+)",
@@ -263,12 +226,9 @@ census_ict <- data.frame(
   Total = c(37700000L, 16300000L, 6000000L, 1600000L, 28000000L, 18700000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_ict, overwrite = TRUE)
 
-# ============================================
-# 13. CENSUS_EMPLOYMENT - Economic activity
-# ============================================
+# 13. CENSUS_EMPLOYMENT
 census_employment <- data.frame(
   Activity_Status = c("Working for pay/profit", "Working family business (no pay)",
                       "Apprentice (no pay)", "Seeking work",
@@ -287,8 +247,6 @@ census_employment <- data.frame(
             770000L, 180000L),
   stringsAsFactors = FALSE
 )
-
 usethis::use_data(census_employment, overwrite = TRUE)
 
-cat("All datasets created successfully!\n")
-cat("Run this script in R to generate .rda files in the data/ directory.\n")
+cat("All 13 datasets created successfully!\n")

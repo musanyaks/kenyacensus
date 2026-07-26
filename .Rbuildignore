@@ -6,3 +6,4 @@
 ^BUILD\.R$
 ^LICENSE$
 ^vignettes$
+^cran-comments\.md$
