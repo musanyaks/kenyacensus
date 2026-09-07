@@ -10,7 +10,7 @@ Description: Provides comprehensive Kenya Population and Housing Census data
     from 1948 to 2019. Includes national summaries, county-level breakdowns,
     demographic characteristics, education, housing, ICT access, employment,
     ethnicity, and disability statistics. All data sourced from the Kenya 
-    National Bureau of Statistics (KNBS).
+    National Bureau of Statistics (KNBS) <https://www.knbs.or.ke/>.
 License: CC0
 Encoding: UTF-8
 LazyData: true
